@@ -1,12 +1,15 @@
 const User = require('../model/User')
 const bcrypt = require('bcrypt')
+const { param } = require('../users')
 
 const saltRounds = 10
 
 const createUser = (params) => {
     let newUser = new User({
-        username: params.username,
-        password: params.password
+        email: params.email,
+        password: params.password,
+        firstname: params.firstname,
+        lastname: params.lastname
     })
     return newUser
 }

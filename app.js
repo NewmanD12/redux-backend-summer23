@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 // var mongooseOptions = { dbName: 'login-context'}
 // mongoose.connect(process.env.MONGODB_URI, mongooseOptions )
 
-mongoose.connect(process.env.MONGODB_URI, { dbName: 'login-context'} )
+mongoose.connect(process.env.MONGODB_URI, { dbName: 'redux-backend'} )
         .then(() => console.log('MongoDB Connected!!!'))
         .catch((error) => console.log(error))
 

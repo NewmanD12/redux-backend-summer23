@@ -8,7 +8,7 @@ module.exports = {
             console.log(req.headers);
             
             //check if user exists / get the user form the db
-            let foundUser = await User.findOne({username: req.body.username})
+            let foundUser = await User.findOne({email: req.body.email})
             if (!foundUser) {
                  throw {
                     status: 404,
@@ -27,13 +27,13 @@ module.exports = {
             // console.log(foundUser)
             let payload = {
                 id: foundUser._id,
-                username: foundUser.username
+                email: foundUser.email
             }
 
             let token = await jwt.sign(payload, process.env.SUPER_SECRET_KEY, {expiresIn: 60*60})
             
             res.status(200).json({
-                username: req.body.username,
+                email: req.body.email,
                 message: "Successful Login!!",
                 token: token
             })  
@@ -44,7 +44,7 @@ module.exports = {
     register: async (req, res) => {
         try {
             //if foundUser exists throw an error
-            let foundUser = await User.findOne({username: req.body.username})
+            let foundUser = await User.findOne({email: req.body.email})
             if (foundUser) {
                 throw {
                     status: 409,
@@ -84,17 +84,17 @@ module.exports = {
         //
         // let payload = {
         //     id: foundUser._id,
-        //     username: foundUser.username
+        //     email: foundUser.email
         // }
         // let token = await jwt.sign(payload, process.env.SUPER_SECRET_KEY, {expiresIn: 5*60})
         // res.status(200).json({
-        //     username: foundUser.username,
+        //     email: foundUser.email,
         //     message: "Successful Token Login!!",
         //     token: token
         // })
 
         res.status(200).json({
-            username: foundUser.username,
+            email: foundUser.email,
             message: "Successful Token Login!!"
         })
 
@@ -116,7 +116,7 @@ module.exports = {
 
 // const login = (req, res) => {
 //     return {
-//         username: req.body.username
+//         email: req.body.email
 //     }
 // }
 //
