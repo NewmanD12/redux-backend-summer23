@@ -33,7 +33,11 @@ module.exports = {
             let token = await jwt.sign(payload, process.env.SUPER_SECRET_KEY, {expiresIn: 60*60})
             
             res.status(200).json({
-                email: req.body.email,
+                user: {
+                    email: foundUser.email,
+                    firstname: foundUser.firstname,
+                    lastname: foundUser.lastname
+                },
                 message: "Successful Login!!",
                 token: token
             })  
