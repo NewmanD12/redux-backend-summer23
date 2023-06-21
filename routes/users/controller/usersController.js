@@ -101,6 +101,8 @@ module.exports = {
 
         res.status(200).json({
             email: foundUser.email,
+            firstname: foundUser.firstname,
+            lastname: foundUser.lastname,
             message: "Successful Token Login!!"
         })
 
