@@ -65,7 +65,9 @@ module.exports = {
             let savedUser = await newUser.save()
 
             res.status(200).json({
-                    userObj: savedUser,
+                    email: savedUser.email,
+                    firstname: savedUser.firstname,
+                    lastname: savedUser.lastname,
                     message: "Successfully Registered"
                 }) 
         } catch (error) {
