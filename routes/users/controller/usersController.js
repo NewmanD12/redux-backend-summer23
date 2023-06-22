@@ -5,7 +5,8 @@ const { createUser, hashPassword, comparePasswords } = require('./usersHelper')
 module.exports = {
     login: async (req, res) => {
         try {
-            console.log(req.headers);
+            // console.log(req.headers);
+            // console.log(req.body);
             
             //check if user exists / get the user form the db
             let foundUser = await User.findOne({email: req.body.email})
@@ -30,7 +31,13 @@ module.exports = {
                 email: foundUser.email
             }
 
-            let token = await jwt.sign(payload, process.env.SUPER_SECRET_KEY, {expiresIn: 60*60})
+            let expiration = new Number
+            if (req.body.isRemember) {
+                expiration = 60*60*24*7
+            } else {
+                expiration = 60*15
+            }
+            let token = await jwt.sign(payload, process.env.SUPER_SECRET_KEY, {expiresIn: expiration})
             
             res.status(200).json({
                 user: {
