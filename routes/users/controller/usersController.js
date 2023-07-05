@@ -128,13 +128,3 @@ module.exports = {
     
 
 }
-
-// const login = (req, res) => {
-//     return {
-//         email: req.body.email
-//     }
-// }
-//
-// module.exports = {
-//     login
-// }
